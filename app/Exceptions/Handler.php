@@ -2,9 +2,16 @@
 
 namespace App\Exceptions;
 
+use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Handler extends ExceptionHandler
 {
@@ -23,7 +30,15 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        //
+        JWTException::class,
+        TokenBlacklistedException::class,
+        TokenInvalidException::class,
+        TokenExpiredException::class,
+        ValidationException::class,
+        CustomValidationException::class,
+        ModelNotFoundException::class,
+        NotFoundHttpException::class,
+        RouteNotFoundException::class,
     ];
 
     /**

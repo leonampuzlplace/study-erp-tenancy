@@ -6,22 +6,28 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
+/**
+ * Who am i?
+ */
 Route::group([
     'middleware' => [
         'api', 
         InitializeTenancyByDomain::class, 
-        PreventAccessFromCentralDomains::class
+        PreventAccessFromCentralDomains::class,
+        'cors',
+        'X-Locale'
     ],
-    'namespace' => '',
-    'prefix' => '',
 ], function () {
-    Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
-    Route::get('/ping', function () {
-        return 'pong #DOMAIN: ' . tenant('id');
-    });
-    Route::get('/login', function () {
-        return 'Login. Id of the current tenant is ' . tenant('id');
+    Route::get('/whoami', function () {
+        return responseSuccess([
+            "iam" => [
+                "id" => tenant('id'),
+                "email" => tenant('email'),
+                "domain" => tenant('domain'),
+                "company" => tenant('company'),
+                "tenancy_db_name" => tenant('tenancy_db_name'),
+                "created_at" => tenant('created_at'),
+            ]
+        ]);
     });
 });
