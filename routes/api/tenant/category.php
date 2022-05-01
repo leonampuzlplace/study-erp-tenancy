@@ -13,7 +13,7 @@ Route::group([
     InitializeTenancyByDomain::class, 
     PreventAccessFromCentralDomains::class,
     'cors',
-    // 'jwt',
+    'jwt',
     // 'acl',
     'X-Locale'
   ],
