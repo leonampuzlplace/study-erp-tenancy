@@ -16,10 +16,15 @@ class PersonContact extends Model
         'is_default' => 'boolean',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'person_id',
+        'is_default',
+        'name',
+        'ein',
+        'type',
+        'note',
+        'phone',
+        'email',
     ];
 
     protected static function boot()

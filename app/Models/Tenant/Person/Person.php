@@ -31,11 +31,23 @@ class Person extends Model
         'is_other' => 'boolean',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
-    ];
+    protected $fillable = [
+        'business_name',
+        'alias_name',
+        'ein',
+        'state_registration',
+        'icms_taxpayer',
+        'municipal_registration',
+        'note',
+        'internet_page',
+        'is_customer',
+        'is_seller',
+        'is_supplier',
+        'is_carrier',
+        'is_technician',
+        'is_employee',
+        'is_other',
+      ];
 
     protected static function boot()
     {

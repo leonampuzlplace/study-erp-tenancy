@@ -18,10 +18,16 @@ class PersonAddress extends Model
         'is_default' => 'boolean',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'person_id',
+        'is_default',
+        'zipcode',
+        'address',
+        'address_number',
+        'complement',
+        'district',
+        'city_id',
+        'reference_point',
     ];
 
     protected static function boot()

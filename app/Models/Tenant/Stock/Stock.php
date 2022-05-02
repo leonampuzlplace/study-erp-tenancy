@@ -31,10 +31,21 @@ class Stock extends Model
         'current_quantity' => 'float',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'name',
+        'reference_code',
+        'ean_code',
+        'cost_price',
+        'sale_price',
+        'minimum_quantity',
+        'current_quantity',
+        'move_stock',
+        'note',
+        'discontinued',
+        'unit_id',
+        'category_id',
+        'brand_id',
+        'is_service',
     ];
 
     protected static function boot()

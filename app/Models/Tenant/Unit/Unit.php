@@ -25,10 +25,9 @@ class Unit extends Model
     protected $casts = [
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'abbreviation',
+        'description',
     ];
 
     protected static function boot()

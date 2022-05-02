@@ -23,8 +23,12 @@ class RolePermission extends Model
         'is_allowed' => 'boolean',
     ];
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'role_id',
+        'action_name',
+        'action_group_description',
+        'action_name_description',
+        'is_allowed',
     ];
 
     protected static function boot()

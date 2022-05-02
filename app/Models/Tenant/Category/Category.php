@@ -23,10 +23,8 @@ class Category extends Model
     protected $casts = [
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'name',
     ];
 
     protected static function boot()

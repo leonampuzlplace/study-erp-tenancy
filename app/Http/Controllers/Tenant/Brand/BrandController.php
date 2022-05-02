@@ -29,7 +29,6 @@ class BrandController extends Controller
 
     public function index(Request $request)
     {
-        return [];
         return $this->responseSuccess(
             $this->service->index(
                 $request->input('page'),

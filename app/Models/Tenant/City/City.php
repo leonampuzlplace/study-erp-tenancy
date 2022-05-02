@@ -23,10 +23,10 @@ class City extends Model
         'updated_at'
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'name',
+        'ibge_code',
+        'state_id',
     ];
 
     protected static function boot()

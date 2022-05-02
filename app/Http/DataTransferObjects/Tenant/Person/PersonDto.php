@@ -93,7 +93,7 @@ class PersonDto extends Data
         'required',
         'string',
         'numeric',
-        ValidationRule::unique('person', 'ein')->ignore(request()->route('person')),
+        ValidationRule::unique('person', 'ein')->ignore(getRouteParameter(request()->route())),
         fn ($att, $value, $fail) => static::rulesEin($att, $value, $fail),
       ],
     ];
