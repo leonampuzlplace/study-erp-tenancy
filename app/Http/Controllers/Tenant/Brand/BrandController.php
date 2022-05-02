@@ -27,8 +27,9 @@ class BrandController extends Controller
         return $this->responseSuccess(code: Response::HTTP_NO_CONTENT);
     }
 
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
+        return [];
         return $this->responseSuccess(
             $this->service->index(
                 $request->input('page'),
