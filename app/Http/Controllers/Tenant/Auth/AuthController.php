@@ -74,7 +74,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         $user = $this->getUserWithPermission();
-        //Cache::put($token, $user, (env('JWT_TTL', 240) * 60));
+        Cache::put($token, $user, (env('JWT_TTL', 240) * 60));
         return $this->responseSuccess([
             'access_token' => $token,
             'token_type' => 'bearer',
@@ -91,7 +91,7 @@ class AuthController extends Controller
     protected function getUserWithPermission(): array
     {
         return User::whereId(auth()->user()->id)
-            // ->with('role.rolePermission')
+            ->with('role.rolePermission')
             ->first()
             ->toArray();
     }

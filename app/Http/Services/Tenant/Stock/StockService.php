@@ -4,7 +4,7 @@ namespace App\Http\Services\Tenant\Stock;
 
 use App\Http\DataTransferObjects\Tenant\Stock\StockDto;
 use App\Http\Repositories\Tenant\Stock\StockRepository;
-// use App\Http\Services\User\RoleService;
+use App\Http\Services\Tenant\User\RoleService;
 
 class StockService
 {
@@ -43,8 +43,8 @@ class StockService
     return $this->repository->setTransaction(false)->update($id, $dto);
   }
 
-  // public static function permissionTemplate(): array
-  // {
-  //   return RoleService::permissionTemplateDefault('stock', 'Produtos / Serviços');
-  // }  
+  public static function permissionTemplate(): array
+  {
+    return RoleService::permissionTemplateDefault('stock', 'Produtos / Serviços');
+  }  
 }
