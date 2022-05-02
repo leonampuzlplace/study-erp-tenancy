@@ -28,12 +28,12 @@ class PersonService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): PersonDto
+  public function show(int $id): PersonDto|null
   {
     return $this->repository->show($id);
   }
 
-  public function store(PersonDto $dto): PersonDto
+  public function store(PersonDto $dto): PersonDto|null
   {
     return $this->repository->setTransaction(true)->store($dto);
   }

@@ -28,8 +28,8 @@ class UnitController extends Controller
 
   public function show(int $id): JsonResponse
   {
-    return $this->responseSuccess(
-      $this->service->show($id)
-    );
+    return ($dto = $this->service->show($id))
+      ? $this->responseSuccess($dto)
+      : $this->responseError(code: Response::HTTP_NOT_FOUND);
   }
 }

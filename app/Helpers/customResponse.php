@@ -8,12 +8,12 @@ use Illuminate\Http\Response;
 
 function baseResponse(): array
 {
-  return [
-    'code' => '',
-    'error' => false,
-    'message' => '',
-    'result' => [],
-  ];
+    return [
+        'code' => '',
+        'error' => false,
+        'message' => '',
+        'result' => [],
+    ];
 }
 
 function responseSuccess(mixed $result = [], int $code = Response::HTTP_OK, string $msg = ''): JsonResponse
@@ -44,6 +44,15 @@ function responseSuccess(mixed $result = [], int $code = Response::HTTP_OK, stri
 
 function responseError(mixed $result = [], int $code = Response::HTTP_BAD_REQUEST, string $msg = ''): JsonResponse
 {
+    // Quando nenhuma mensagem informado, seta um default
+    if (!$msg) {
+        $msg = match ($code) {
+            Response::HTTP_BAD_REQUEST => trans('message_lang.http_bad_request'),
+            Response::HTTP_NOT_FOUND => trans('message_lang.http_not_found'),
+            default => '',
+        };
+    }
+
     // Configurar resposta
     $baseResponse = baseResponse();
     $baseResponse['code'] = $code;

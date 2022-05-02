@@ -2,7 +2,6 @@
 
 namespace App\Http\Repositories;
 
-use App\Exceptions\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -30,10 +29,9 @@ abstract class BaseRepository
   public function destroy(int $id): bool
   {
     $executeDestroy = function ($id) {
-      $modelFound = $this->model->find($id);
-      throw_if(!$modelFound, new ModelNotFoundException(trans('message_lang.model_not_found') . ' Id: ' . $id));
-
-      return $modelFound->delete();
+      return ($modelFound = $this->model->find($id)) 
+        ? $modelFound->delete() 
+        : false;
     };
 
     // Controle de Transação
@@ -183,13 +181,17 @@ abstract class BaseRepository
    * Localizar um único registro por ID
    *
    * @param integer $id
-   * @return Data
+   * @return Data|null
    */
-  public function show(int $id): Data
+  public function show(int $id): Data|null
   {
-    $modelFound = $this->model->find($id);
-    throw_if(!$modelFound, new ModelNotFoundException(trans('message_lang.model_not_found') . ' id: ' . $id));
-    return $modelFound->getData();
+    $modelFound = $this->model
+      ->whereId($id)
+      ->first();
+
+    return $modelFound
+      ? $modelFound->getData()
+      : null;
   }
 
   /**

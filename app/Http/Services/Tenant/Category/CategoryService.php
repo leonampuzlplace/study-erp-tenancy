@@ -28,7 +28,7 @@ class CategoryService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): CategoryDto
+  public function show(int $id): CategoryDto|null
   {
     return $this->repository->show($id);
   }

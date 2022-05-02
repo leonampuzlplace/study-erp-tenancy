@@ -31,7 +31,7 @@ class RoleService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): RoleDto
+  public function show(int $id): RoleDto|null
   {
     return $this->repository->show($id);
   }
