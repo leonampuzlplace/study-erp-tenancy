@@ -67,6 +67,6 @@ class Kernel extends HttpKernel
         'cors' => \App\Http\Middleware\Cors::class,
         'X-Locale' => \App\Http\Middleware\Locale::class,
         'jwt' => \App\Http\Middleware\JWT::class,
-        // 'acl' => \App\Http\Middleware\ACL::class,
+        'acl' => \App\Http\Middleware\ACL::class,
     ];
 }

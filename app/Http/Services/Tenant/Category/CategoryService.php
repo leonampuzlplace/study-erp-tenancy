@@ -4,7 +4,7 @@ namespace App\Http\Services\Tenant\Category;
 
 use App\Http\DataTransferObjects\Tenant\Category\CategoryDto;
 use App\Http\Repositories\Tenant\Category\CategoryRepository;
-// use App\Http\Services\User\RoleService;
+use App\Http\Services\Tenant\User\RoleService;
 
 class CategoryService
 {
@@ -43,8 +43,8 @@ class CategoryService
     return $this->repository->setTransaction(false)->update($id, $dto);
   }
 
-  // public static function permissionTemplate(): array
-  // {
-  //   return RoleService::permissionTemplateDefault('category', 'Categorias');
-  // }  
+  public static function permissionTemplate(): array
+  {
+    return RoleService::permissionTemplateDefault('category', 'Categorias');
+  }  
 }

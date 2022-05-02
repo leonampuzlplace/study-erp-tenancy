@@ -184,7 +184,7 @@ class Handler extends ExceptionHandler
                 responseError(
                     $exception->getMessage(),
                     Response::HTTP_BAD_REQUEST,
-                    'Unexpected exception'
+                    "Unexpected exception [${exceptionName}]",
                 );
             }
         }

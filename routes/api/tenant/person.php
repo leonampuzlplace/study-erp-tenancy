@@ -14,7 +14,7 @@ Route::group([
     PreventAccessFromCentralDomains::class,
     'cors',
     'jwt',
-    // 'acl',
+    'acl',
     'X-Locale'
   ],
   'namespace' => 'App\Http\Controllers\Tenant\Person',

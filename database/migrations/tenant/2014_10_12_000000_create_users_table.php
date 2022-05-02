@@ -20,20 +20,37 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('role_id')->nullable()->index();
+            $table->integer('is_admin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
 
-        DB::table('users')->insert(
+        DB::table('users')->truncate();
+        DB::table('users')->insert([
             [
+                'id' => 1,
                 'name' => 'admin',
                 'email' => 'admin@msn.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('admin123'),
+                'is_admin' => 1,
+                'role_id' => null,
                 'remember_token' => \Illuminate\Support\Str::random(10),
                 'created_at' => now(),
             ],
-        );
+            [
+                'id' => 2,
+                'name' => 'user',
+                'email' => 'user@msn.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('user123'),
+                'is_admin' => 0,
+                'role_id' => 1,
+                'remember_token' => \Illuminate\Support\Str::random(10),
+                'created_at' => now(),
+            ],
+        ]); 
     }
 
     /**

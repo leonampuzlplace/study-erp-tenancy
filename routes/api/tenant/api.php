@@ -1,13 +1,26 @@
 <?php
 
-declare(strict_types=1);
-
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /**
- * Who am i?
+ * Teste de conexão com o Tenant
+ */
+Route::group([
+    'middleware' => [
+        'api',
+        InitializeTenancyByDomain::class,
+        PreventAccessFromCentralDomains::class,
+    ],
+], function () {
+    Route::get('/ping', function () {
+        return 'pong [TENANT]';
+    });
+});
+
+/**
+ * Who am i? (Tenant Conectado)
  */
 Route::group([
     'middleware' => [
