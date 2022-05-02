@@ -22,7 +22,7 @@ class StateService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): StateDto
+  public function show(int $id): StateDto|null
   {
     return $this->repository->show($id);
   }

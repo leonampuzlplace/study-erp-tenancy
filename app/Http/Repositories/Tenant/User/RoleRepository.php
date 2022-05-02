@@ -25,17 +25,18 @@ class RoleRepository extends BaseRepository
    * Acrescenta with para mostrar relacionamentos
    *
    * @param integer $id
-   * @return Data
+   * @return Data|null
    */
-  public function show(int $id): Data
+  public function show(int $id): Data|null
   {
     $modelFound = $this->model
       ->whereId($id)
       ->with('rolePermission')
       ->first();
 
-    throw_if(!$modelFound, new ModelNotFoundException(trans('message_lang.model_not_found') . ' id: ' . $id));
-    return $modelFound->getData();
+    return $modelFound
+      ? $modelFound->getData()
+      : null;    
   }
 
   /**

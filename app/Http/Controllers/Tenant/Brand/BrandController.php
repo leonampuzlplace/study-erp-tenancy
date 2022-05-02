@@ -23,8 +23,9 @@ class BrandController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $this->service->destroy($id);
-        return $this->responseSuccess(code: Response::HTTP_NO_CONTENT);
+        return $this->service->destroy($id) 
+            ? $this->responseSuccess(code: Response::HTTP_NO_CONTENT)
+            : $this->responseError(code: Response::HTTP_NOT_FOUND);
     }
 
     public function index(Request $request)
@@ -39,9 +40,9 @@ class BrandController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        return $this->responseSuccess(
-            $this->service->show($id)
-        );
+        return ($dto = $this->service->show($id))
+            ? $this->responseSuccess($dto)
+            : $this->responseError(code: Response::HTTP_NOT_FOUND);
     }
 
     public function store(BrandDto $dto): JsonResponse

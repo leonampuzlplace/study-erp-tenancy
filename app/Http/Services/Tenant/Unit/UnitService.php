@@ -22,7 +22,7 @@ class UnitService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): UnitDto
+  public function show(int $id): UnitDto|null
   {
     return $this->repository->show($id);
   }

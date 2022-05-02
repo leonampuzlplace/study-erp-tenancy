@@ -22,7 +22,7 @@ class CityService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): CityDto
+  public function show(int $id): CityDto|null
   {
     return $this->repository->show($id);
   }

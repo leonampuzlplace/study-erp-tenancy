@@ -28,7 +28,7 @@ class BrandService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): BrandDto
+  public function show(int $id): BrandDto|null
   {
     return $this->repository->show($id);
   }

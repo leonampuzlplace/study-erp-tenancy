@@ -28,7 +28,7 @@ class StockService
     return $this->repository->index($page, $filter, $filterEx);
   }
 
-  public function show(int $id): StockDto
+  public function show(int $id): StockDto|null
   {
     return $this->repository->show($id);
   }
