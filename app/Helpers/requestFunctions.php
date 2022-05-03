@@ -23,13 +23,6 @@ if (!function_exists('currentUser')) {
   }
 }
 
-if (!function_exists('currentTenantId')) {
-  function currentTenantId(): int|null
-  {
-    return currentUser()['tenant_id'] ?? null;
-  }
-}
-
 if (!function_exists('getRouteParameter')) {
   function getRouteParameter($route)
   {

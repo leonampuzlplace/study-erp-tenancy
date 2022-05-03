@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
         parent::boot();
 
         // Formatar dados após recuperar a informação
-        static::creating(fn ($model) => $model->id = (string) Str::uuid());
+        static::creating(fn ($model) => $model->uuid = (string) Str::uuid());
     }
 
     /**
